@@ -1,0 +1,281 @@
+<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+<link href="b.css" rel="stylesheet">
+
+    <title>Doctor's Appointment Booking</title>
+    <style>
+        b {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+           
+            display: grid;
+  place-items: center;
+  min-height: 100vh;
+  background-color: aliceblue;
+
+
+            
+        }
+      /**body{
+          background-image: linear-gradient(to right, red,white);
+          
+        }*/
+        .contain {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+           
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+            background-color: white;
+            
+          
+        }
+       
+        .form-group {
+            margin-bottom: 20px;
+            
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            margin-top: 10px;
+        }
+        
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            border: none;
+            
+        }
+        button:hover {
+            background-color: #0056b3;
+            
+        }
+        
+      .error{
+        color:red;
+      }
+        
+    </style>
+    <script>
+      function validateForm() {
+          let name = document.getElementById("name").value;
+          let email = document.getElementById("email").value;
+          let date = document.getElementById("date").value;
+          let number = document.getElementById("number").value;
+          let doctor = document.getElementById("doctor").value;
+          
+          let nameError = document.getElementById("nameError");
+          let emailError = document.getElementById("emailError");
+          let dateError = document.getElementById("dateError");
+          let numberError = document.getElementById("numberError");
+          
+          nameError.textContent = "";
+          emailError.textContent = "";
+          dateError.textContent = "";
+          numberError.textContent = "";
+          
+          let valid = true;
+          
+          if (name.trim() === "") {
+              nameError.textContent = "Name is required";
+              valid = false;
+          }
+          
+          if (email.trim() === "") {
+              emailError.textContent = "Email is required";
+              valid = false;
+          }
+          
+          if (date.trim() === "") {
+              dateError.textContent = "Preferred date is required";
+              valid = false;
+          }
+          
+          if (number.trim() === "" || !/^[0-9]{10}$/.test(number)) {
+              numberError.textContent = "Invalid or missing contact number (10 digits required)";
+              valid = false;
+          }
+          
+          if (doctor === "") {
+              alert("Please select a doctor.");
+              valid = false;
+          }
+          
+          return valid;
+      }
+    </script>
+</head>
+
+<body>   
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  
+    <div class="container">
+  
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+                    
+  
+          <li class="nav-item active">
+            <a class="nav-link active" href="home.html ">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="service.html">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="booking1.html">Book Doctors Appointment</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Specialists.html">Specialists</a>
+          </li>
+            <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      AboutUs
+                    </a>
+                    <ul class="dropdown-menu fade-down" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" href="overview.html">OverView</a></li>
+                      <li><a class="dropdown-item" href="vision.html">Vision and mission</a></li>
+                      <li><a class="dropdown-item" href="testimonial.html">Testimonial</a></li>
+                    </ul>
+                  </li>
+        
+        </ul>
+      </div>
+       <div class="icon">
+        <a class="nav-link"  href="contact.html"> <i class='bx bxs-user'></i></a>
+  
+      </div>
+      &nbsp;
+      <div class="icon">
+        <a href="https://www.instagram.com/theapollohospitals/?hl=en" class="nav-link"><i class='bx bxl-instagram-alt'></i></a>
+      </div>
+      &nbsp;
+      <div class="icon">
+        <i class='bx bxl-meta' ></i>
+      </div>
+    </div>
+  </nav>
+          <!-- <div class="contain">
+          <div class="b">
+        
+        <h1>Book an Appointment</h1>
+           
+        <form id="appointment-form"action="http://localhost:8000/book" method="post">
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" >
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" >
+            </div>
+            <div class="form-group">
+                <label for="date">Preferred Date</label>
+                <input type="date" id="date" name="date">
+            </div>
+            <div class="form-group">
+              <label for="Number">Contact Number</label>
+              <input type="number" id="date" placeholder="XXXXXXXXXX" pattern="{0-9}[10]" name="Number">
+          </div>
+            <div class="form-group">
+                <label for="doctor">Select Doctor</label>
+                <select id="doctor" name="doctor">
+                    <option value="" disabled selected>Select a doctor</option>
+                    <option value="dr-strange">Dr. Strange(cardiologists)</option>
+                    <option value="dr-james">Dr. James(orthopedics)</option>
+                    <option value="dr-clara">Dr. Clara(Maternity)</option>
+                </select>
+            </div>
+            <div class="form-group">
+            Are You Suffering From:
+            <br>
+            <textarea name="message" id="disease" rows="5" cols="50"></textarea>
+            </div>
+            <button type="submit">Book Appointment</button>
+            <div class="mt-5">
+            
+        </div>
+        </form></div> </div>
+    </div><br> -->
+    
+    
+    <div class="contain">
+      <div class="b">
+          <h1>Book an Appointment</h1>
+          <form id="appointment-form" action="http://localhost:8000/book" method="post" onsubmit="return validateForm()">
+              <div class="form-group">
+                  <label for="name">Your Name</label>
+                  <input type="text" id="name" name="name">
+                  <div id="nameError" class="error" style="margin-top: 10px;">
+              </div>
+              <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" name="email">
+                  <div id="nameError" class="error" style="margin-top: 10px;">
+
+                  <span id="emailError" class="error" style="margin-top: 10px;"></span>
+              </div>
+              <div class="form-group">
+                  <label for="date">Preferred Date</label>
+                  <input type="date" id="date" name="date">
+                  <div id="nameError" class="error" style="margin-top: 10px;">
+
+                  <span id="dateError" class="error" style="margin-top: 10px;"></span>
+              </div>
+              <div class="form-group">
+                  <label for="Number">Contact Number</label>
+                  <input type="text" id="number" name="Number" placeholder="XXXXXXXXXX" pattern="[0-9]{10}">
+                  <div id="nameError" class="error" style="margin-top: 10px;">
+
+                  <span id="numberError" class="error" style="margin-top: 10px;"></span>
+              </div>
+              <div class="form-group">
+                  <label for="doctor">Select Doctor</label>
+                  <select id="doctor" name="doctor">
+                      <option value="" disabled selected>Select a doctor</option>
+                      <option value="dr-strange">Dr. Strange (cardiologists)</option>
+                      <option value="dr-james">Dr. James (orthopedics)</option>
+                      <option value="dr-clara">Dr. Clara (Maternity)</option>
+                  </select>
+                  <div id="nameError" class="error" style="margin-top: 10px;">
+
+                  <span id="doctorError" class="error" style="margin-top: 10px;"></span>
+              </div>
+              <div class="form-group">
+                  Are You Suffering From:
+                  <br>
+                  <textarea name="message" id="disease" rows="5" cols="50"></textarea>
+              </div>
+              <button type="submit">Book Appointment</button>
+          </form>
+      </div>
+  </div>
+  
+
+    <footer class="bg-dark text-light text-center py-3">
+        <p>@2023 Hospital Management. All rights reserved.</p>
+      </footer>
+      
+    
+</body>
+</html>
